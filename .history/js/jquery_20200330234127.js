@@ -37,6 +37,7 @@ $(document).ready(function() {
             console.log("x = " + points[j].xpos + "\n" + "y = " + points[j].ypos);
         }
 
+
         var getJSON = function(url, callback) {
             var xhr = new XMLHttpRequest();
             xhr.open("GET", url, true);
@@ -83,9 +84,15 @@ Unix time: ${data.milliseconds_since_epoch}`;
         // open a connection
         xhr.open("POST", url, true);
         var myJson = JSON.stringify(points);
-        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.setRequestHeader(
+            "Content-Type",
+            "application/json"
+        );
         xhr.onreadystatechange = function() {
-            if (xhr.readyState === 4 && xhr.status === 200) {
+            if (
+                xhr.readyState === 4 &&
+                xhr.status === 200
+            ) {
                 // Print received data from server
                 console.log(this.responseText);
             }

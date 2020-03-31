@@ -36,36 +36,6 @@ $(document).ready(function() {
         for (var j = 0; j < points.length; j++) {
             console.log("x = " + points[j].xpos + "\n" + "y = " + points[j].ypos);
         }
-
-        var getJSON = function(url, callback) {
-            var xhr = new XMLHttpRequest();
-            xhr.open("GET", url, true);
-            xhr.responseType = "json";
-
-            xhr.onload = function() {
-                var status = xhr.status;
-
-                if (status == 200) {
-                    callback(null, xhr.response);
-                } else {
-                    callback(status);
-                }
-            };
-
-            xhr.send();
-        };
-
-        getJSON("http://time.jsontest.com", function(err, data) {
-            if (err != null) {
-                console.error(err);
-            } else {
-                var text = `Date: ${data.date}
-Time: ${data.time}
-Unix time: ${data.milliseconds_since_epoch}`;
-
-                console.log(text);
-            }
-        });
     });
 
     //erasing styles in canvas
@@ -83,9 +53,15 @@ Unix time: ${data.milliseconds_since_epoch}`;
         // open a connection
         xhr.open("POST", url, true);
         var myJson = JSON.stringify(points);
-        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.setRequestHeader(
+            "Content-Type",
+            "application/json"
+        );
         xhr.onreadystatechange = function() {
-            if (xhr.readyState === 4 && xhr.status === 200) {
+            if (
+                xhr.readyState === 4 &&
+                xhr.status === 200
+            ) {
                 // Print received data from server
                 console.log(this.responseText);
             }
