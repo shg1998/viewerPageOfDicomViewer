@@ -1,0 +1,97 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style2.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+
+    <title>simple dicom viewer!</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <nav class="navbar navbar-dark bg-info mb-5" style="border-radius: 4px;">
+            <h3 class="text-center mt-2" style="margin-left:500px;"> simple <kbd class="p-2">Dicom</kbd> js </h3>
+        </nav>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 m-auto">
+                <div class="custom-file mb-3">
+                    <input type="file" class="custom-file-input" id="upload-file">
+                    <label for="upload-file" class="custom-file-label" id="uploaded-name">choose image</label>
+                </div>
+                <canvas id="canvas"></canvas>
+                <h4 class="text-center my-3 font-weight-bold">Filters</h4>
+                <div class="row text-center my-4">
+                    <div class="col-md-3">
+                        <div class="btn-group btn-group-sm">
+                            <button class="filter-btn brightness-remove btn btn-danger">-</button>
+                            <button class=" btn btn-secondary btn-disabled" disabled>Brightness</button>
+                            <button class="filter-btn brightness-add btn btn-danger">+</button>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="btn-group btn-group-sm">
+                            <button class="filter-btn contrast-remove btn btn-danger">-</button>
+                            <button class=" btn btn-secondary btn-disabled" disabled>Contrast</button>
+                            <button class="filter-btn contrast-add btn btn-danger">+</button>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="btn-group btn-group-sm">
+                            <button class="filter-btn saturation-remove btn btn-danger">-</button>
+                            <button class=" btn btn-secondary btn-disabled" disabled>Saturation</button>
+                            <button class="filter-btn saturation-add btn btn-danger">+</button>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="btn-group btn-group-sm">
+                            <button class="filter-btn vibrance-remove btn btn-danger">-</button>
+                            <button class=" btn btn-secondary btn-disabled" disabled>Vibrance</button>
+                            <button class="filter-btn vibrance-add btn btn-danger">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- row -->
+                <div class="row my-5 ">
+                    <div class="col-md-6">
+                        <button id="Punctuation-btn" class="btn btn-success btn-block">Punctuation</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button id="Erase-btn" class="btn btn-danger btn-block">Erase points</button>
+                    </div>
+                </div>
+                <div class="row my-5">
+                    <div class="col-md-6">
+                        <button id="getPoints-btn" class="btn btn-warning btn-block">getPoints</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button id="addPoints-btn" class="btn btn-info btn-block">addPoints</button>
+                    </div>
+                </div>
+                <div class="row my-5">
+                    <div class="col-md-6">
+                        <button id="download-btn" class="btn btn-dark btn-block">Download</button>
+                    </div>
+
+                    <div class="col-md-6">
+                        <button id="revert-btn" class="btn btn-danger btn-block">Remove Filters</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/camanjs/4.1.2/caman.full.min.js" integrity="sha256-Ttj6Ke2Nzuxi5upPlHetkZxBtdTq0LV1Z6BEUUsKPfs=" crossorigin="anonymous"></script>
+    <script src="js/script.js"></script>
+    <script src="js/jquery.js"></script>
+</body>
+
+</html>
