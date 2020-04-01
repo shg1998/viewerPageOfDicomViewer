@@ -27,6 +27,8 @@ $(document).ready(function() {
                 .css("width", size)
                 .css("height", size)
                 .css("background-color", color)
+                .css("cursor", "move")
+                .css("border-radius", "20px")
             );
         });
     });
@@ -55,7 +57,7 @@ $(document).ready(function() {
             xhr.send();
         };
 
-        getJSON("http://time.jsontest.com", function(err, data) {
+        getJSON("getPoints.webService", function(err, data) {
             if (err != null) {
                 console.error(err);
             } else {
@@ -81,7 +83,7 @@ Unix time: ${data.milliseconds_since_epoch}`;
         let url = "server";
 
         // open a connection
-        xhr.open("POST", url, true);
+        xhr.open("POST", "addPoints", true);
         var myJson = JSON.stringify(points);
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.onreadystatechange = function() {
@@ -102,7 +104,7 @@ Unix time: ${data.milliseconds_since_epoch}`;
 function sendJSON(object) {
     // Creating a XHR object
     let xhr = new XMLHttpRequest();
-    let url = "server";
+    let url = "addPoints.webService";
 
     // open a connection
     xhr.open("POST", url, true);
@@ -132,3 +134,31 @@ function sendJSON(object) {
     // Sending data with the request
     xhr.send(data);
 }
+
+//  $.ajax({
+
+//              type: "POST",
+
+//              url: "DataService.asmx/GetData",
+
+//              contentType: "application/json; charset=utf-8",
+
+//              dataType: "json",
+
+//              success: function (response) {
+
+//                  var names = response.d;
+
+//                  alert(names);
+
+//              },
+
+//              failure: function (response) {
+
+//                  alert(response.d);
+
+//              }
+
+//          });
+
+//      });

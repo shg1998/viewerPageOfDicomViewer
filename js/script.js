@@ -102,6 +102,27 @@ UploadFile.addEventListener("change", e => {
         () => {
             //create the img
             img = new Image();
+
+
+            // $.ajax({
+            //     url: URL,
+            //     type: "GET",
+            //     dataType: "html",
+            //     async: false,
+            //     crossDomain: "true",
+            //     success: function(data, status) {
+            //         console.log("Status: " + status + "\nData: " + data);
+            //         result = data;
+
+            //         /* creating image */
+            //         var img = $('<img id="image_id">');
+            //         img.attr("src", "data:image/gif;base64," + data);
+            //         img.appendTo("#canvas");
+            //     }
+            // });
+
+
+
             //set src:
             img.src = reader.result;
             //on image load , add to canvas
