@@ -8,6 +8,8 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 
     <title>simple dicom viewer!</title>
@@ -58,25 +60,54 @@
                         </div>
                     </div>
                 </div>
-
+                <h4 class="text-center my-3 font-weight-bold">Punctuation</h4>
                 <!-- row -->
-                <div class="row my-5 ">
-                    <div class="col-md-6">
+                <div class="row my-4">
+                    <div class="col-md-3">
                         <button id="Punctuation-btn" class="btn btn-success btn-block">Punctuation</button>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <button id="Erase-btn" class="btn btn-danger btn-block">Erase points</button>
                     </div>
-                </div>
-                <div class="row my-5">
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <button id="getPoints-btn" class="btn btn-warning btn-block">getPoints</button>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <button id="addPoints-btn" class="btn btn-info btn-block">addPoints</button>
                     </div>
                 </div>
-                <div class="row my-5">
+
+                <h4 class="text-center my-3 font-weight-bold">Tools</h4>
+                <div class="row my-4">
+                    <div class="col-md-3">
+                        <button class="btn btn-success btn-block" onclick="set('Ruler')">Ruler</button>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-danger btn-block" onclick="set('Protractor')">Angle</button>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-warning btn-block" onclick="set('Rectangle')">Rectangle</button>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-info btn-block" onclick="set('Roi')">Roi</button>
+                    </div>
+                </div>
+                <div class="row my-4">
+                    <div class="col-md-3">
+                        <button class="btn btn-success btn-block" onclick="set('Ellipse')">Ellipse</button>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-danger btn-block" onclick="set('FreeHand')">Freehand</button>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-warning btn-block" onclick="set('Arrow')">Arrow</button>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-info btn-block">Add-viewer</button>
+                    </div>
+                </div>
+                <h4 class="text-center my-3 font-weight-bold">Other</h4>
+                <div class="row my-4">
                     <div class="col-md-6">
                         <button id="download-btn" class="btn btn-dark btn-block">Download</button>
                     </div>
@@ -85,13 +116,15 @@
                         <button id="revert-btn" class="btn btn-danger btn-block">Remove Filters</button>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/camanjs/4.1.2/caman.full.min.js" integrity="sha256-Ttj6Ke2Nzuxi5upPlHetkZxBtdTq0LV1Z6BEUUsKPfs=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/camanjs/4.1.2/caman.full.min.js"></script>
     <script src="js/script.js"></script>
     <script src="js/jquery.js"></script>
+    <script src="js/canvas.js"></script>
 </body>
 
 </html>

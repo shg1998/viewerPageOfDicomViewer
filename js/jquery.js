@@ -1,11 +1,11 @@
-$(document).ready(function() {
+$(document).ready(function () {
     var XPosition;
     var YPosition;
     var i = 0;
     var points = [];
     //for PunctuationPunctuation on canvas!
-    $("#Punctuation-btn").click(function(e) {
-        $("#canvas").click(function(ev) {
+    $("#Punctuation-btn").click(function (e) {
+        $("#canvas").click(function (ev) {
             mouseX = ev.pageX;
             mouseY = ev.pageY;
             // console.log(mouseX + " " + mouseY);
@@ -21,30 +21,63 @@ $(document).ready(function() {
 
             $("body").append(
                 $("<canvas></canvas>")
-                .css("position", "absolute")
-                .css("top", mouseY + "px")
-                .css("left", mouseX + "px")
-                .css("width", size)
-                .css("height", size)
-                .css("background-color", color)
-                .css("cursor", "move")
-                .css("border-radius", "20px")
+                    .css("position", "absolute")
+                    .css("top", mouseY + "px")
+                    .css("left", mouseX + "px")
+                    .css("width", size)
+                    .css("height", size)
+                    .css("background-color", color)
+                    .css("cursor", "move")
+                    .css("border-radius", "20px")
             );
         });
     });
+  
+    $(window).resize(function () {
+
+        var a = $(window).width();
+
+        var b = $(window).height();
+        var color = "rgb(248, 248, 91)";
+        var size = "7px";
+        console.log(a);
+        console.log(b);
+
+        $("canvas").removeAttr("style");
+        for (let i = 0; i < points.length; i++) {
+
+            var mX = parseInt((points[i].xpos) * (a / 1349));
+            var mY = parseInt((points[i].ypos) * (b / 1313));
+            console.log("prev: " + points[i].xpos + "next : " + mX);
+            console.log("prev: " + points[i].ypos + "next : " + mY);
+
+            $("body").append(
+                $("<canvas></canvas>")
+                    .css("position", "absolute")
+                    .css("top", mY + "px")
+                    .css("left", mX + "px")
+                    .css("width", size)
+                    .css("height", size)
+                    .css("background-color", color)
+                    .css("cursor", "move")
+                    .css("border-radius", "20px")
+            );
+            mX = 0;
+            mY = 0;
+        }
+    });
 
     //for getting points that you clicked (x,y)
-    $("#getPoints-btn").click(function(e) {
+    $("#getPoints-btn").click(function (e) {
         for (var j = 0; j < points.length; j++) {
             console.log("x = " + points[j].xpos + "\n" + "y = " + points[j].ypos);
         }
-
-        var getJSON = function(url, callback) {
+        var getJSON = function (url, callback) {
             var xhr = new XMLHttpRequest();
             xhr.open("GET", url, true);
             xhr.responseType = "json";
 
-            xhr.onload = function() {
+            xhr.onload = function () {
                 var status = xhr.status;
 
                 if (status == 200) {
@@ -57,7 +90,7 @@ $(document).ready(function() {
             xhr.send();
         };
 
-        getJSON("getPoints.webService", function(err, data) {
+        getJSON("getPoints.webService", function (err, data) {
             if (err != null) {
                 console.error(err);
             } else {
@@ -71,10 +104,10 @@ Unix time: ${data.milliseconds_since_epoch}`;
     });
 
     //erasing styles in canvas
-    $("#Erase-btn").click(function(e) {
+    $("#Erase-btn").click(function (e) {
         $("canvas").removeAttr("style");
     });
-    $("#addPoints-btn").click(function(e) {
+    $("#addPoints-btn").click(function (e) {
         //first method
         // sendJSON(points);
 
@@ -86,7 +119,7 @@ Unix time: ${data.milliseconds_since_epoch}`;
         xhr.open("POST", "addPoints", true);
         var myJson = JSON.stringify(points);
         xhr.setRequestHeader("Content-Type", "application/json");
-        xhr.onreadystatechange = function() {
+        xhr.onreadystatechange = function () {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 // Print received data from server
                 console.log(this.responseText);
@@ -113,7 +146,7 @@ function sendJSON(object) {
     xhr.setRequestHeader("Content-Type", "application/json");
 
     // Create a state change callback
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             // Print received data from server
             console.log(this.responseText);
