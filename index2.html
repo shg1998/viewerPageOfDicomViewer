@@ -1,5 +1,25 @@
 <html lang="en">
 
+<script type="text/javascript" src="./js/i18next.min.js"></script>
+<script type="text/javascript" src="./js/i18nextXHRBackend.min.js"></script>
+<script type="text/javascript" src="./js/i18nextBrowserLanguageDetector.min.js"></script>
+<script type="text/javascript" src="./js/jszip.min.js"></script>
+<script type="text/javascript" src="./js/konva.min.js"></script>
+<script type="text/javascript" src="./js/magic-wand-min.js"></script>
+<!-- Third party (viewer) -->
+<script type="text/javascript" src="./js/jquery.min.js"></script>
+<script type="text/javascript" src="./js/nprogress.js"></script>
+
+<!-- decoders -->
+<script type="text/javascript" src="./js/rle.js"></script>
+<script type="text/javascript" src="./js/jpx.js"></script>
+<script type="text/javascript" src="./js/util.js"></script>
+<script type="text/javascript" src="./js/arithmetic_decoder.js"></script>
+<script type="text/javascript" src="./js/jpg.js"></script>
+<script type="text/javascript" src="./js/lossless-min.js"></script>
+<!-- dwv -->
+<script type="text/javascript" src="./js/dwv.js"></script>
+
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.min.css">
@@ -28,7 +48,15 @@
                     <input type="file" class="custom-file-input" id="upload-file">
                     <label for="upload-file" class="custom-file-label" id="uploaded-name">choose image</label>
                 </div>
-                <canvas id="canvas"></canvas>
+                <div id="dwv">
+                    <div class="layerContainer">
+                        <canvas class="imageLayer" id="canvas"></canvas>
+                        <div class="drawDiv">
+                            <div class="konvajs-content" role="presentation">
+                                </canvas></div>
+                        </div>
+                    </div>
+                </div>
                 <h4 class="text-center my-3 font-weight-bold">Filters</h4>
                 <div class="row text-center my-4">
                     <div class="col-md-3">
@@ -80,27 +108,27 @@
                 <h4 class="text-center my-3 font-weight-bold">Tools</h4>
                 <div class="row my-4">
                     <div class="col-md-3">
-                        <button class="btn btn-success btn-block" onclick="set('Ruler')" disabled style="cursor: not-allowed;">Ruler</button>
+                        <button class="btn btn-success btn-block" onclick="set('Ruler')">Ruler</button>
                     </div>
                     <div class="col-md-3">
-                        <button class="btn btn-danger btn-block" onclick="set('Protractor')"disabled style="cursor: not-allowed;">Angle</button>
+                        <button class="btn btn-danger btn-block" onclick="set('Protractor')">Angle</button>
                     </div>
                     <div class="col-md-3">
-                        <button class="btn btn-warning btn-block" onclick="set('Rectangle')"disabled style="cursor: not-allowed;">Rectangle</button>
+                        <button class="btn btn-warning btn-block" onclick="set('Rectangle')">Rectangle</button>
                     </div>
                     <div class="col-md-3">
-                        <button class="btn btn-info btn-block" onclick="set('Roi')"disabled style="cursor: not-allowed;">Roi</button>
+                        <button class="btn btn-info btn-block" onclick="set('Roi')">Roi</button>
                     </div>
                 </div>
                 <div class="row my-4">
                     <div class="col-md-3">
-                        <button class="btn btn-success btn-block" onclick="set('Ellipse')"disabled style="cursor: not-allowed;">Ellipse</button>
+                        <button class="btn btn-success btn-block" onclick="set('Ellipse')">Ellipse</button>
                     </div>
                     <div class="col-md-3">
-                        <button class="btn btn-danger btn-block" onclick="set('FreeHand')"disabled style="cursor: not-allowed;">Freehand</button>
+                        <button class="btn btn-danger btn-block" onclick="set('FreeHand')">Freehand</button>
                     </div>
                     <div class="col-md-3">
-                        <button class="btn btn-warning btn-block" onclick="set('Arrow')"disabled style="cursor: not-allowed;">Arrow</button>
+                        <button class="btn btn-warning btn-block" onclick="set('Arrow')">Arrow</button>
                     </div>
                     <div class="col-md-3">
                         <button class="btn btn-info btn-block"disabled style="cursor: not-allowed;">Add-viewer</button>
@@ -125,6 +153,32 @@
     <script src="js/script.js"></script>
     <script src="js/jquery.js"></script>
     <script src="js/canvas.js"></script>
+    <script>
+    // base function to get elements
+    dwv.gui.getElement = dwv.gui.base.getElement;
+    dwv.gui.displayProgress = function (percent) {};
+
+    // create the dwv app
+    var app = new dwv.App();
+    // initialise with the id of the container div
+    var options = {
+        "containerDivId": "dwv",
+        "tools": ["Draw"],
+        "shapes": ["Ruler"],
+    };
+    app.init(options);
+    // load dicom data
+    app.loadURLs(["./founder-xray1.png"]);
+    function set(TempShape) {
+        var options = {
+            "containerDivId": "dwv",
+            "tools": ["Draw"],
+            "shapes": [TempShape],
+        };
+        app.init(options);
+        app.loadURLs(["./founder-xray1.png"]);
+    }
+</script>
 </body>
 
 </html>

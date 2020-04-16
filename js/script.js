@@ -125,6 +125,7 @@ UploadFile.addEventListener("change", e => {
 
             //set src:
             img.src = reader.result;
+            console.log(img.src);
             //on image load , add to canvas
             img.onload = function () {
                 canvas.width = img.width;
