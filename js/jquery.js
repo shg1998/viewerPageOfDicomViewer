@@ -32,11 +32,12 @@ $(document).ready(function () {
             );
         });
     });
-  
+
     $(window).resize(function () {
-
+        var c= window.screen.width();
+        alert(c);
         var a = $(window).width();
-
+        
         var b = $(window).height();
         var color = "rgb(248, 248, 91)";
         var size = "7px";
